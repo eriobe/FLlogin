@@ -8,7 +8,6 @@ namespace login_small.Models.ViewModels
 {
     public class LoginVM
     {
-        public int Id { get; set; }
         [Required(ErrorMessage = "*")]
         public string Username { get; set; }
         [Required(ErrorMessage = "*")]
