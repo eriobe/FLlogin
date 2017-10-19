@@ -1,4 +1,5 @@
-﻿using System;
+﻿using login_small.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,6 +7,17 @@ using System.Web.Mvc;
 
 namespace login_small.Controllers
 {
+    // För att detta ska fungera måste man lägga till kod i web.config
+    /*
+     * system.web
+     * 
+     *     <authentication mode="Forms">
+      <forms loginUrl="~/Account/Login"
+             defaultUrl="~/Home/Welcome">
+      </forms>
+    </authentication>
+    */
+     
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -20,11 +32,22 @@ namespace login_small.Controllers
             return View();
         }
 
+        [AuthorizeRoles("Admin","Medlem")]
+
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Endast administratörer.";
 
             return View();
         }
+
+        [Authorize]
+        public ActionResult Members()
+        {
+            return View();
+        }
+
+
     }
 }
+ 

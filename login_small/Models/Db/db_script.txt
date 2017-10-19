@@ -1,0 +1,19 @@
+﻿CREATE TABLE [dbo].[Person] (
+    [Id]        INT        IDENTITY (1, 1) NOT NULL,
+    [Firstname] NCHAR (50) NULL,
+    [Lastname]  NCHAR (50) NULL,
+    [Username]  NCHAR (10) NULL,
+    [Password]  NCHAR (10) NULL,
+    [RoleId]    INT        NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Person_ToTable] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Roles] ([Id])
+);
+
+CREATE TABLE [dbo].Roles
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Role] NCHAR(10) NULL
+)
+
+
+
